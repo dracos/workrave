@@ -1,0 +1,26 @@
+Documenting steps to get it building on my Mac OS X Lion laptop.
+These things were basically done as I came across errors during compilation.
+
+Current status: Builds, runs, timers work, windows open, exercises, sounds all
+present. Doesn't lock out other windows, and crashes on exit.
+
+1. Created a virtualenv, installed Cheetah.
+2. Using MacPorts, installed gtk2 +no_x11 +quartz (plus making sure all
+   dependencies are +quartz too, e.g. cairo, pango, py27-pygtk, which was a bit
+   of a faff when I got it wrong).
+3. Installed glibmm, gtkmm, intltool.
+4. Installed gtk-osx-application, but the bits of workrave using it are using
+   the Carbon bits which aren't included in the compile. See e.g.
+   https://github.com/GNOME/gtk-mac-integration/pull/1/files
+   So built that separately including that pull request and put in the right
+   place for MacPorts.
+5. Made a couple of edits (in my fork here) to work around issues with
+   undefined or too-defined symbols.
+
+Steps to build:
+
+    ./autogen.sh
+    ./configure --target i686-apple-darwin11-llvm-gcc-4.2 --prefix=...
+    make
+    make install
+
