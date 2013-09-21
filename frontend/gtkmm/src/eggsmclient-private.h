@@ -29,6 +29,13 @@ void      egg_sm_client_quit_requested (EggSMClient *client);
 void      egg_sm_client_quit_cancelled (EggSMClient *client);
 void      egg_sm_client_quit           (EggSMClient *client);
 
+/* GDK_WINDOWING_QUARTZ doesn't appear to be true, so just always define these
+ * things so as not to get an undefined sybmol error. Also note the ordering of
+ * the ifs here doesn't match that of eggsmclient.c, though reordering here
+ * doesn't appear to let it work anyway. */
+GType        egg_sm_client_osx_get_type (void);
+EggSMClient *egg_sm_client_osx_new      (void);
+
 #if defined (GDK_WINDOWING_X11)
 # ifdef EGG_SM_CLIENT_BACKEND_XSMP
 GType        egg_sm_client_xsmp_get_type (void);
