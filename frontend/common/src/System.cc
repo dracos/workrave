@@ -177,6 +177,7 @@ invoke(const gchar* command, bool async = false)
 #endif
 
 
+#if defined(PLATFORM_OS_UNIX)
 #ifdef HAVE_DBUS_GIO
 void
 System::init_kde_lock()
@@ -259,6 +260,7 @@ System::kde_lock()
   
   return ret;
 }
+#endif
 #endif
 
 void
